@@ -11,7 +11,7 @@ def main():
     simulation_box = pygame.Rect((SCREEN_WIDTH - SIM_WIDTH) // 2, (SCREEN_HEIGHT - SIM_HEIGHT) // 2, SIM_WIDTH, SIM_HEIGHT)
     clock = pygame.time.Clock()
     fluid_sim = FluidSim(screen, simulation_box)
-    fluid_sim.generate_particle_grid(spacing=20)
+    fluid_sim.generate_particle_grid(spacing=5)
 
     # Visual
     font = pygame.font.SysFont("Arial", 18)
