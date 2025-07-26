@@ -1,5 +1,4 @@
 import pygame
-from enum import Enum
 
 ###################
 ## VIS CONSTANTS ##
@@ -14,16 +13,23 @@ FPS = 60
 ###################
 ## These are fun to play with!
 FLUID_DENSITY = 1000.0
-GRAVITY = 9.81             # acceleration due to gravity i.e. 9.81 m/s^2 for Earth, or 1.62 m/s^2 for the Moon
-DAMPING_FACTOR = 0.90      # damping factor for velocity after collision i.e 0.90 means 10% of velocity is lost after collision
+GRAVITY = 9.81                  # acceleration due to gravity i.e. 9.81 m/s^2 for Earth, or 1.62 m/s^2 for the Moon
+DAMPING_FACTOR = 0.90           # damping factor for velocity after collision i.e 0.90 means 10% of velocity is lost after collision
+REPULSION_STRENGTH = 500        # strength of repulsion force between particles
+
+MOUSE_ATTRACT_RADIUS = 250
+MOUSE_ATTRACT_STRENGTH = 10000
 
 ## Don't really need to touch these
 SIM_WIDTH = 700            
 SIM_HEIGHT = 500
 SIM_BORDER_WIDTH = 3            
-PARTICLE_SPACING = 0.5      
-PARTICLE_RADIUS = 5        
-MAX_PARTICLES = 100       
+PARTICLE_SPACING = 1     
+PARTICLE_RADIUS = 4
+MAX_PARTICLES = 900
+DRAG_COEFFICIENT = 0.98
+REPULSION_SMOOTHING = 0.7 
+MAX_PARTICLE_VELOCITY = 300
 
 
 ####################
