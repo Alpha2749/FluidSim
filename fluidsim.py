@@ -9,41 +9,9 @@ from CONSTANTS import (
 
 ## TODO:
 ## - Refactor/ clean up code
-## - Handle user inputs better
-
-class SpatialGrid:
-    """Efficient neighbor search using spatial hashing."""
-
-    def __init__(self, cell_size):
-        self.cell_size = cell_size
-        self.cells = {}
-
-    def _hash(self, position):
-        # Binning positions into grid cells
-        return (int(position.x) // self.cell_size, int(position.y) // self.cell_size)
-
-    def clear(self):
-        self.cells.clear()
-
-    def insert(self, particle):
-        cell = self._hash(particle.position)
-        self.cells.setdefault(cell, []).append(particle)
-
-    def get_neighbors(self, particle):
-        x, y = self._hash(particle.position)
-        neighbors = []
-
-        # Check surrounding cells, i.e. 3x3 in grid
-        for dx in [-1, 0, 1]:
-            for dy in [-1, 0, 1]:
-                neighbors.extend(self.cells.get((x + dx, y + dy), []))
-
-        return neighbors
-
+## - Move user input handling out of here
 
 class FluidSim:
-    """Fluid Simulation class that manages particles and their interactions."""
-
     def __init__(self, screen, sim_box):
         self.screen = screen
         self.sim_box = sim_box
@@ -57,7 +25,6 @@ class FluidSim:
         }
     
     def generate_particles_grid(self, spacing=20):
-        """Populate sim area with evenly spaced particles in hex pattern."""
         row = 0
         for y in range(self.bounds['top'], self.bounds['bottom'], spacing):
             offset = spacing // 2 if row % 2 else 0 
@@ -73,7 +40,6 @@ class FluidSim:
             self.particles.append(Particle(position, velocity, self.screen, self.bounds))
 
     def _apply_external_forces(self):
-        """Handle repulsion and velocity smoothing between close particles."""
         for a in self.particles:
             for b in self.grid.get_neighbors(a):
                 if a is b:
@@ -83,7 +49,6 @@ class FluidSim:
                 dist = delta.length()
                 min_dist = PARTICLE_RADIUS * 2
 
-                # Velocity smoothing
                 avg_velocity = (a.velocity + b.velocity) * 0.5
                 a.velocity = a.velocity.lerp(avg_velocity, 0.1)
                 b.velocity = b.velocity.lerp(avg_velocity, 0.1)
@@ -94,14 +59,12 @@ class FluidSim:
                     a.velocity += force
                     b.velocity -= force
 
-                    # Positional correction (repulsion)
                     overlap = min_dist - dist
                     correction = direction * (overlap * 0.5 * REPULSION_SMOOTHING)
                     a.position += correction
                     b.position -= correction
 
     def update(self, dt, mouse_pos=None, mouse_buttons=None):
-        """Advance simulation one frame."""
         self.grid.clear()
         for particle in self.particles:
             self.grid.insert(particle)
@@ -116,8 +79,6 @@ class FluidSim:
 
 
 class Particle:
-    """Represents a single particle in the simulation."""
-
     def __init__(self, position, velocity, screen, sim_bounds):
         self.position = position
         self.velocity = velocity
@@ -125,14 +86,12 @@ class Particle:
         self.bounds = sim_bounds
 
     def update(self, dt, mouse_pos=None, mouse_buttons=None):
-        # Velocity
         self._apply_gravity(dt)
         self._apply_drag()
         if mouse_pos:
             self._apply_user_forces(dt, mouse_pos, mouse_buttons)
         self._clamp_velocity()
 
-        # Position
         self.position += self.velocity * dt
         self._clamp_position()
 
@@ -155,6 +114,7 @@ class Particle:
                 direction.normalize_ip() 
                 strength = 1 - distance / MOUSE_ATTRACT_RADIUS
                 
+                # TODO: move input handling from here
                 if mouse_buttons[0]:  # Left click - attract
                     self.velocity += direction * MOUSE_ATTRACT_STRENGTH * strength * dt
                 elif mouse_buttons[2]:  # Right click - repel
@@ -179,9 +139,34 @@ class Particle:
             self.velocity.y = 0
 
     def draw(self):
-        self._draw_soft_circle(self.screen, COLOUR.BLUE, self.position, PARTICLE_RADIUS)
+        self._draw_soft_circle(self.screen, COLOUR.DEEP_AQUA, self.position, PARTICLE_RADIUS)
 
     def _draw_soft_circle(self, surface, colour, position, radius):
         x, y = int(position.x), int(position.y)
-        pygame.gfxdraw.aacircle(surface, x, y, radius, COLOUR.GREEN)
+        pygame.gfxdraw.aacircle(surface, x, y, radius, COLOUR.SKY_BLUE)
         pygame.gfxdraw.filled_circle(surface, x, y, radius, colour)
+
+class SpatialGrid:
+    def __init__(self, cell_size):
+        self.cell_size = cell_size
+        self.cells = {}
+
+    def _hash(self, position):
+        return (int(position.x) // self.cell_size, int(position.y) // self.cell_size)
+
+    def clear(self):
+        self.cells.clear()
+
+    def insert(self, particle):
+        cell = self._hash(particle.position)
+        self.cells.setdefault(cell, []).append(particle)
+
+    def get_neighbors(self, particle):
+        x, y = self._hash(particle.position)
+        neighbors = []
+
+        for dx in [-1, 0, 1]:
+            for dy in [-1, 0, 1]:
+                neighbors.extend(self.cells.get((x + dx, y + dy), []))
+
+        return neighbors

@@ -26,10 +26,10 @@ SIM_HEIGHT = 600
 SIM_BORDER_WIDTH = 3            
 PARTICLE_SPACING = 8     
 PARTICLE_RADIUS = 6
-MAX_PARTICLES = 1000
+MAX_PARTICLES = 800
 DRAG_COEFFICIENT = 1
 REPULSION_SMOOTHING = 0.4
-MAX_PARTICLE_VELOCITY = 1200
+MAX_PARTICLE_VELOCITY = 1500
 
 
 ####################
@@ -39,11 +39,17 @@ class COLOUR:
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
     RED = (255, 0, 0)
+    CRIMSON_RED = (220, 50, 70)
+    SOFT_ORANGE = (255, 160, 70)
+    SILVER_GREY = (180, 180, 200)
+    DEEP_GOLD = (255, 200, 80)
     GREEN = (0, 255, 0)
+    DEEP_AQUA = (50, 120, 150)
     BLUE = (0, 0, 255)
+    SKY_BLUE = (135, 206, 235)
 
 ####################
-#### POSITIONS #####
+###### OTHER #######
 ####################
 class POSITION:
     TOP_LEFT = pygame.math.Vector2(0, 0)

@@ -8,10 +8,14 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "pygame" },
+    { name = "pygame-widgets" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "pygame", specifier = ">=2.6.1" }]
+requires-dist = [
+    { name = "pygame", specifier = ">=2.6.1" },
+    { name = "pygame-widgets", specifier = ">=1.2.2" },
+]
 
 [[package]]
 name = "pygame"
@@ -34,3 +38,22 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/a6/06/29e939b34d3f1354738c7d201c51c250ad7abefefaf6f8332d962ff67c4b/pygame-2.6.1-cp313-cp313-win32.whl", hash = "sha256:3acd8c009317190c2bfd81db681ecef47d5eb108c2151d09596d9c7ea9df5c0e", size = 10249309, upload-time = "2024-09-29T11:10:23.329Z" },
     { url = "https://files.pythonhosted.org/packages/7e/11/17f7f319ca91824b86557e9303e3b7a71991ef17fd45286bf47d7f0a38e6/pygame-2.6.1-cp313-cp313-win_amd64.whl", hash = "sha256:813af4fba5d0b2cb8e58f5d95f7910295c34067dcc290d34f1be59c48bd1ea6a", size = 10620084, upload-time = "2024-09-29T11:48:51.587Z" },
 ]
+
+[[package]]
+name = "pygame-widgets"
+version = "1.2.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pygame" },
+    { name = "pyperclip" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/5a/43/3aae1f45eeb7bfaa56415b03a2c67720a6895f45d7b0b7b164a9624044d9/pygame_widgets-1.2.2.tar.gz", hash = "sha256:7fd117fc914a2b90fe2dd609f7239151171777a1c0728fbe4a60dd5e1ade2f54", size = 24276, upload-time = "2025-06-11T00:26:37.511Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f7/d4/74174e7a9dddde598fdb7b638a73049782948f28c986c930190984293361/pygame_widgets-1.2.2-py3-none-any.whl", hash = "sha256:4dada0461e35babb4611b186cb729ef177173d4e7596a87f68a0a08b64bad6c4", size = 30571, upload-time = "2025-06-11T00:26:36.146Z" },
+]
+
+[[package]]
+name = "pyperclip"
+version = "1.9.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/30/23/2f0a3efc4d6a32f3b63cdff36cd398d9701d26cda58e3ab97ac79fb5e60d/pyperclip-1.9.0.tar.gz", hash = "sha256:b7de0142ddc81bfc5c7507eea19da920b92252b548b96186caf94a5e2527d310", size = 20961, upload-time = "2024-06-18T20:38:48.401Z" }

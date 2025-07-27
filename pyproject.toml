@@ -1,9 +1,10 @@
 [project]
 name = "fluidsim"
 version = "0.1.0"
-description = "Add your description here"
+description = "A PBD-like particle fluid simulator written in Python!"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "pygame>=2.6.1",
+    "pygame-widgets>=1.2.2",
 ]
