@@ -25,9 +25,9 @@ There are several options to install this, I made this with the uv package/ proj
 
 2. Clone the repo
    
-`git clone https://github.com/Alpha2749/FluidSim.git
+`git clone https://github.com/Alpha2749/FluidSim.git`
 
-cd FluidSim`
+`cd FluidSim`
 
 3. Install dependencies (exact versions)
    
@@ -42,15 +42,15 @@ cd FluidSim`
 #### Option 2: Using regular venv
 1. Clone the project
    
-`git clone https://github.com/Alpha2749/FluidSim.git
+`git clone https://github.com/Alpha2749/FluidSim.git`
 
-cd FluidSim`
+`cd FluidSim`
 
 2. Create a virtual environment
    
-`python -m venv .venv
+`python -m venv .venv`
 
-source .venv/bin/activate  # Windows: .venv\Scripts\activate`
+`source .venv/bin/activate  # Windows: .venv\Scripts\activate`
 
 3. Manually install with the requirements file:
    
