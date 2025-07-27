@@ -20,33 +20,42 @@ There are several options to install this, I made this with the uv package/ proj
 
 #### Option 1: Using uv *(Preferred)*
 - Install uv (one-time setup)
+  
 `curl -LsSf https://astral.sh/uv/install.sh | sh`
 
 - Clone the repo
+  
 `git clone https://github.com/Alpha2749/FluidSim.git
 cd FluidSim`
 
 - Install dependencies (exact versions)
+  
 `uv pip install -r uv.lock`
 *or (latest compatible versions)*
+
 `uv pip install`
 
 - To run the project using uv, simply run the following:
+- 
 `uv run main.py`
 
 #### Option 2: Using regular venv
 - Clone the project
+  
 `git clone https://github.com/Alpha2749/FluidSim.git
 cd FluidSim`
 
 - Create a virtual environment
+  
 `python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate`
 
 - Manually install with the requirements file:
+  
 `pip install -r requirements.txt`
 
 - To run the project using a venv, ensure your venv is active, then run:
+  
 `python3 main.py`
 
 ## Usage
