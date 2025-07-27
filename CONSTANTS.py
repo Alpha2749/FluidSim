@@ -5,7 +5,7 @@ import pygame
 ###################
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
-FPS = 30
+FPS = 60
 
 
 ###################
@@ -13,23 +13,23 @@ FPS = 30
 ###################
 ## These are fun to play with!
 FLUID_DENSITY = 100.0
-GRAVITY = 9.81                  # acceleration due to gravity i.e. 9.81 m/s^2 for Earth, or 1.62 m/s^2 for the Moon
-DAMPING_FACTOR = 0.95           # damping factor for velocity after collision i.e 0.90 means 10% of velocity is lost after collision
-REPULSION_STRENGTH = 200      # strength of repulsion force between particles
+GRAVITY = 9.81                  # Acceleration due to Gravity i.e. 9.81 m/s^2 for Earth, or 1.62 m/s^2 for the Moon
+DAMPING_FACTOR = 0.95           # Damping factor for velocity after collision i.e 0.90 means 10% of velocity is lost after collision
+REPULSION_STRENGTH = 400        # Strength of repulsion force between particles
 
 MOUSE_ATTRACT_RADIUS = 250
 MOUSE_ATTRACT_STRENGTH = 10000
 
 ## Don't really need to touch these
-SIM_WIDTH = 700            
-SIM_HEIGHT = 500
+SIM_WIDTH = 600          
+SIM_HEIGHT = 600
 SIM_BORDER_WIDTH = 3            
 PARTICLE_SPACING = 8     
-PARTICLE_RADIUS = 5
+PARTICLE_RADIUS = 6
 MAX_PARTICLES = 1000
 DRAG_COEFFICIENT = 1
-REPULSION_SMOOTHING = 0.5
-MAX_PARTICLE_VELOCITY = 600
+REPULSION_SMOOTHING = 0.4
+MAX_PARTICLE_VELOCITY = 1200
 
 
 ####################

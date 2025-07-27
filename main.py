@@ -11,7 +11,7 @@ def main():
     simulation_box = pygame.Rect((SCREEN_WIDTH - SIM_WIDTH) // 2, (SCREEN_HEIGHT - SIM_HEIGHT) // 2, SIM_WIDTH, SIM_HEIGHT)
     clock = pygame.time.Clock()
     fluid_sim = FluidSim(screen, simulation_box)
-    fluid_sim.generate_particle_grid(spacing=5)
+    fluid_sim.generate_particles_grid(spacing=7)
 
     # Visual
     font = pygame.font.SysFont("Arial", 18)
@@ -23,7 +23,11 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-        
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_g:
+                    # modify some parameters
+                    pass
+                
         # Draw base elements
         screen.fill(COLOUR.BLACK)
         pygame.draw.rect(screen, COLOUR.RED, simulation_box_view, width=SIM_BORDER_WIDTH)
@@ -32,11 +36,10 @@ def main():
         
         # Update and draw the fluid simulation
         dt = clock.tick(FPS) / 1000
-        mouse_pos = None
-        if pygame.mouse.get_pressed()[0]:
-            mouse_pos = pygame.Vector2(pygame.mouse.get_pos())
+        mouse_pos = pygame.Vector2(pygame.mouse.get_pos())
+        mouse_buttons = pygame.mouse.get_pressed()
 
-        fluid_sim.update(dt, mouse_pos=mouse_pos)
+        fluid_sim.update(dt, mouse_pos, mouse_buttons)
         fluid_sim.draw()
 
         pygame.display.flip()
