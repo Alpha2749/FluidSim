@@ -1,4 +1,3 @@
-import numpy as np
 import pygame
 import pygame.gfxdraw
 from CONSTANTS import (
