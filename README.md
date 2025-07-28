@@ -77,9 +77,11 @@ You have the following options:
 
 ## Demonstration
 Here is some media of the simulator in action.
-
+**GIF of the simulator in action** ***(I swear it is higher FPS in real life)***
 ![](https://github.com/Alpha2749/FluidSim/blob/main/media/fluid_sim_gif.gif)
 
+
+**Some images**
 ![](https://github.com/Alpha2749/FluidSim/blob/main/media/sim1.PNG)
 
 ![](https://github.com/Alpha2749/FluidSim/blob/main/media/sim2.PNG)
