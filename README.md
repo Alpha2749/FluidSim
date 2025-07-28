@@ -21,17 +21,22 @@ There are several options to install this, I made this with the uv package/ proj
 #### Using uv
 1. Install uv (one-time setup)
    
-`curl -LsSf https://astral.sh/uv/install.sh | sh`
+```
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
 
 2. Clone the repo
    
-`git clone https://github.com/Alpha2749/FluidSim.git`
-
-`cd FluidSim`
+```
+git clone https://github.com/Alpha2749/FluidSim.git
+cd FluidSim
+```
 
 3. To run the project using uv, simply run the following:
    
-`uv run main.py`
+```
+uv run main.py
+```
 
 
 ## Usage
