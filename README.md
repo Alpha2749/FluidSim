@@ -64,9 +64,16 @@ There are several options to install this, I made this with the uv package/ proj
 You have the following options:
 - **Left Click** - Attract particles to cursor
 - **Right Click** - Repel particles from cursor
-- **On-screen Sliders** - Change simulation parameters at runtime (Hopefully, need to get this done)
-- 
-**TODO: FILL OUT USAGE**
+- **Buttons**
+  - ***Clear Simulation*** - Clears the simulation box
+  - ***Spawn Particles*** - Spawns particles *(as indicated by the Particles to spawn slider)*
+- **On-screen Sliders** - Change simulation parameters at runtime
+  - ***Particles to spawn*** - How many particles to spawn with the spawn particles button
+  - ***Gravity*** - Changes the gravity of the ~situation~ simulation!
+  - ***Drag Coefficient*** - How much friction plays an effect (I think it'd broken, in my implementation. 1 works best, but higher is fun too!)
+  - ***Mouse Strength*** - How much force the cursor applies when right or left clicking
+
+*(Hopefully I can add more in the future)*
 
 ## Demonstration
 Here is some media of the simulator in action.
