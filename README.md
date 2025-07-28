@@ -69,6 +69,8 @@ Here is some media of the simulator in action.
 
 ![](https://github.com/Alpha2749/FluidSim/blob/main/media/sim3.PNG)
 
+![](https://github.com/Alpha2749/FluidSim/blob/main/media/simheart.PNG)
+
 ## Aside
 There are definitely a lot of issues with this code, and a lot of things I want to change...
 
