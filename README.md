@@ -19,8 +19,8 @@ Anyway, you've probably had enough of reading my short novella now, so here is t
 There are several options to install this, I made this with the uv package/ project manager. So I would recommend using that. Although I have left a requirements.txt which (should) work too with a regular venv.
 
 #### Using uv
-1. Install uv (one-time setup)
-   
+1. Install uv (one-time setup) [uv github](https://github.com/astral-sh/uv)
+
 ```
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
