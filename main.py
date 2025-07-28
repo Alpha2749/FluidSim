@@ -2,8 +2,7 @@ import pygame
 import pygame_widgets
 from pygame_widgets.button import Button
 from pygame_widgets.slider import Slider
-from pygame_widgets.textbox import TextBox
-from CONSTANTS import COLOUR, POSITION, SCREEN_HEIGHT, SCREEN_WIDTH, FPS, SIM_HEIGHT, SIM_WIDTH, SIM_BORDER_WIDTH, MAX_PARTICLES
+from CONSTANTS import COLOUR, SCREEN_HEIGHT, SCREEN_WIDTH, FPS, SIM_HEIGHT, SIM_WIDTH, SIM_BORDER_WIDTH, MAX_PARTICLES
 from fluidsim import FluidSim
 
 
@@ -28,8 +27,10 @@ def main():
     simulation_box_view = simulation_box.inflate(SIM_BORDER_WIDTH+2, SIM_BORDER_WIDTH+2)
 
     # UI Elements
-    slider_particles_to_spawn = Slider(win=screen, x=25, y=70+20+40+15, width=200, height=20, min=0, max=MAX_PARTICLES, step=10, initial=MAX_PARTICLES, colour=COLOUR.UI_BUTTON_BACKGROUND, handleColour=COLOUR.UI_BUTTON_TEXT)
-    slider_gravity = Slider(win=screen, x=25, y=70+20+40+15+40+10+15, width=200, height=20, min=0, max=20, step=0.01, initial=9.81, colour=COLOUR.UI_BUTTON_BACKGROUND, handleColour=COLOUR.UI_BUTTON_TEXT)
+    slider_particles_to_spawn = Slider(win=screen, x=25, y=145, width=200, height=20, min=1, max=MAX_PARTICLES, step=10, initial=MAX_PARTICLES, colour=COLOUR.UI_BUTTON_BACKGROUND, handleColour=COLOUR.UI_BUTTON_TEXT)
+    slider_gravity = Slider(win=screen, x=25, y=210, width=200, height=20, min=0, max=20, step=0.01, initial=9.81, colour=COLOUR.UI_BUTTON_BACKGROUND, handleColour=COLOUR.UI_BUTTON_TEXT)
+    slider_drag_coefficient = Slider(win=screen, x=25, y=275, width=200, height=20, min=0.95, max=1.05, step=0.01, initial=1, colour=COLOUR.UI_BUTTON_BACKGROUND, handleColour=COLOUR.UI_BUTTON_TEXT)
+    slider_mouse_strength = Slider(win=screen, x=25, y=350, width=200, height=20, min=2000, max=12000, step=100, initial=10000, colour=COLOUR.UI_BUTTON_BACKGROUND, handleColour=COLOUR.UI_BUTTON_TEXT)
 
     def spawn_particles():
         fluid_sim.generate_particles_grid(particles=slider_particles_to_spawn.getValue(), spacing=7)
@@ -56,11 +57,24 @@ def main():
         value_particles_to_spawn = font.render(f"{slider_particles_to_spawn.getValue()} Particles", True, COLOUR.WHITE)
         label_gravity = font.render("Gravity", True, COLOUR.WHITE)
         value_gravity = font.render(f"{slider_gravity.getValue():.2f} m/s^2 - (9.81 for Earth, 1.62 for Moon)", True, COLOUR.WHITE)
+        label_drag_coefficient = font.render("Drag Coefficient", True, COLOUR.WHITE)
+        value_drag_coefficient = font.render(f"{slider_drag_coefficient.getValue():.2f} % Energy retained from friction", True, COLOUR.WHITE)
+        label_mouse_strength = font.render("Mouse Strength (Repulsion & Attraction)", True, COLOUR.WHITE)
+        value_mouse_strength = font.render(f"{slider_mouse_strength.getValue():.2f} Unitless... (Play around!)", True, COLOUR.WHITE)
         pygame.draw.rect(screen, COLOUR.BOUNDING_BOX, simulation_box_view, width=SIM_BORDER_WIDTH)
         fps_text = font.render(f"FPS: {clock.get_fps():.2f}", True, COLOUR.WHITE)
 
         # blut all UI elements
-        blittable = [(fps_text, (15+150+10+150+15, 38)), (label_particles_to_spawn, (15, 110)), (value_particles_to_spawn, (225+25, 70+20+40+15)), (label_gravity, (15, 180)), (value_gravity, (250, 70+20+40+15+40+15))]
+        blittable = [(fps_text, (15+150+10+150+15, 38)), 
+                     (label_particles_to_spawn, (15, 110)), 
+                     (value_particles_to_spawn, (250, 145)), 
+                     (label_gravity, (15, 175)), 
+                     (value_gravity, (250, 210)),
+                     (label_drag_coefficient, (15, 245)), 
+                     (value_drag_coefficient, (250, 275)),
+                     (label_mouse_strength, (15, 320)),
+                     (value_mouse_strength, (250, 350))
+        ]
         for i in blittable:
             screen.blit(i[0], i[1]) 
         
@@ -68,7 +82,7 @@ def main():
         ## Update and draw the fluid simulation
         dt = clock.tick(FPS) / 1000
 
-        fluid_sim.update(dt, mouse_pos, mouse_buttons)
+        fluid_sim.update(dt, mouse_pos, mouse_buttons, gravity=slider_gravity.getValue(), drag_coefficient=slider_drag_coefficient.getValue(), mouse_strength=slider_mouse_strength.getValue())
         fluid_sim.draw()
         pygame_widgets.update(events)
         pygame.display.flip()

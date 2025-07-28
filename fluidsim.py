@@ -1,8 +1,8 @@
 import pygame
 import pygame.gfxdraw
 from CONSTANTS import (
-    COLOUR, VELOCITY, GRAVITY, DAMPING_FACTOR,
-    PARTICLE_RADIUS, MAX_PARTICLES, DRAG_COEFFICIENT,
+    COLOUR, VELOCITY, DAMPING_FACTOR,
+    PARTICLE_RADIUS, MAX_PARTICLES,
     REPULSION_SMOOTHING, REPULSION_STRENGTH, MAX_PARTICLE_VELOCITY,
     MOUSE_ATTRACT_RADIUS, MOUSE_ATTRACT_STRENGTH
 )
@@ -76,14 +76,14 @@ class FluidSim:
                     a.position += correction
                     b.position -= correction
 
-    def update(self, dt, mouse_pos=None, mouse_buttons=None):
+    def update(self, dt, mouse_pos, mouse_buttons, gravity, drag_coefficient, mouse_strength):
         self.grid.clear()
         for particle in self.particles:
             self.grid.insert(particle)
         
         self._apply_external_forces()
         for particle in self.particles:
-            particle.update(dt, mouse_pos, mouse_buttons)
+            particle.update(dt, mouse_pos, mouse_buttons, gravity, drag_coefficient, mouse_strength)
 
     def draw(self):
         for particle in self.particles:
@@ -97,27 +97,27 @@ class Particle:
         self.screen = screen
         self.bounds = sim_bounds
 
-    def update(self, dt, mouse_pos=None, mouse_buttons=None):
-        self._apply_gravity(dt)
-        self._apply_drag()
+    def update(self, dt, mouse_pos, mouse_buttons, gravity, drag_coefficient, mouse_strength):
+        self._apply_gravity(dt, gravity)
+        self._apply_drag(drag_coefficient)
         if mouse_pos:
-            self._apply_user_forces(dt, mouse_pos, mouse_buttons)
+            self._apply_user_forces(dt, mouse_pos, mouse_buttons, mouse_strength)
         self._clamp_velocity()
 
         self.position += self.velocity * dt
         self._clamp_position()
 
-    def _apply_drag(self):
-        self.velocity *= DRAG_COEFFICIENT
+    def _apply_drag(self, drag_coefficient):
+        self.velocity *= drag_coefficient
 
-    def _apply_gravity(self, dt):
-        self.velocity += VELOCITY.DOWN * (GRAVITY * 100) * dt
+    def _apply_gravity(self, dt, gravity):
+        self.velocity += VELOCITY.DOWN * (gravity * 100) * dt
 
     def _clamp_velocity(self):
         if self.velocity.length_squared() > MAX_PARTICLE_VELOCITY ** 2:
             self.velocity.scale_to_length(MAX_PARTICLE_VELOCITY)
 
-    def _apply_user_forces(self, dt, mouse_pos, mouse_buttons):
+    def _apply_user_forces(self, dt, mouse_pos, mouse_buttons, mouse_strength):
         if mouse_pos and mouse_buttons:
             direction = mouse_pos - self.position
             distance = direction.length()
@@ -128,9 +128,9 @@ class Particle:
                 
                 # TODO: move input handling from here
                 if mouse_buttons[0]:  # Left click - attract
-                    self.velocity += direction * MOUSE_ATTRACT_STRENGTH * strength * dt
+                    self.velocity += direction * mouse_strength * strength * dt
                 elif mouse_buttons[2]:  # Right click - repel
-                    self.velocity -= direction * MOUSE_ATTRACT_STRENGTH * strength * dt
+                    self.velocity -= direction * mouse_strength * strength * dt
 
     def _clamp_position(self):
         if self.position.x < self.bounds['left']:
