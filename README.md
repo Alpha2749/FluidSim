@@ -27,7 +27,8 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 ```
-# On Windows. Note, you will need to restart your CMD as the newly installed uv will not be found in the active session.
+# On Windows. 
+# Note, you will need to restart your CMD as the newly installed uv will not be found in the active session.
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
