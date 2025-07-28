@@ -16,9 +16,9 @@ Keeping this in mind, I'm quite happy with what I've managed to get done in this
 Anyway, you've probably had enough of reading my short novella now, so here is the real fun:
 
 ## Installation
-There are several options to install this, I made this with the uv package/ project manager. So I can recommend installing it with this. However, because I have also worked with just regular venvs and pip before, if you don't want to use uv you can also use a regular venv. These options can be seen below:
+There are several options to install this, I made this with the uv package/ project manager. So I would recommend using that. Although I have left a requirements.txt which (should) work too with a regular venv.
 
-#### Option 1: Using uv *(Preferred)*
+#### Using uv
 1. Install uv (one-time setup)
    
 `curl -LsSf https://astral.sh/uv/install.sh | sh`
@@ -33,26 +33,6 @@ There are several options to install this, I made this with the uv package/ proj
    
 `uv run main.py`
 
-#### Option 2: Using regular venv
-1. Clone the project
-   
-`git clone https://github.com/Alpha2749/FluidSim.git`
-
-`cd FluidSim`
-
-2. Create a virtual environment
-   
-`python -m venv .venv`
-
-`source .venv/bin/activate  # Windows: .venv\Scripts\activate`
-
-3. Manually install with the requirements file:
-   
-`pip install -r requirements.txt`
-
-4. To run the project using a venv, ensure your venv is active, then run:
-
-`python3 main.py`
 
 ## Usage
 You have the following options:
