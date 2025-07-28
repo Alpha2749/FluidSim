@@ -69,3 +69,19 @@ Here is some media of the simulator in action.
 
 ![](https://github.com/Alpha2749/FluidSim/blob/main/media/sim3.PNG)
 
+## Aside
+There are definitely a lot of issues with this code, and a lot of things I want to change...
+
+First of all, it is not very optimised, hence I have tried to pick a particle amount that seems to work ok, but any more and everything breaks.
+My initial tests were even worse, hence I looked into some way to make sure particles were only actually checking neighboring particles, which led me to the spatial grid solutions from several youtube videos and other rabbit holes.
+
+Secondly, especially towards the end, I was very much rushing to get it done. So a lot of my code is quite dirty, and there are way more magic numbers than I would like. 
+I am certain there are a lot of constants that aren't actually being used anywhere which I need to clean up.
+
+Lastly, I am pretty sure I have some energy being lost somewhere, and I'm not sure where, as even with a 1.0 damping factor, and a 1.0 drag coefficient, the particles still seem to lose energy. So there is definitely a lot wrong with this.
+
+All things considered, I think it is still a pretty fun little applet, and I think this has helped me understand what is and isn't achievable.
+I do plan on writing the FLIP method in the future, but I definitely need to give myself more time to do that. I initially started this wanting to write that, but after watching several videos and reading through a bunch of academic literature, I realised that the time I had given myself was not enough to get that done...
+
+If you've read all this, thank you! And I hope you enjoy this little sim, even if it isn't quite what I want it to be.
+
