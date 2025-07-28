@@ -25,7 +25,7 @@ There are several options to install this, I made this with the uv package/ proj
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-2. Clone the repo
+2. Clone the repo and change directory into it
    
 ```
 git clone https://github.com/Alpha2749/FluidSim.git
