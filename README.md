@@ -29,13 +29,7 @@ There are several options to install this, I made this with the uv package/ proj
 
 `cd FluidSim`
 
-3. Install dependencies (exact versions)
-   
-`uv pip install -r uv.lock`
-*or (latest compatible versions)*
-`uv pip install`
-
-4. To run the project using uv, simply run the following:
+3. To run the project using uv, simply run the following:
    
 `uv run main.py`
 
