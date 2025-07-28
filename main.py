@@ -30,7 +30,7 @@ def main():
     slider_particles_to_spawn = Slider(win=screen, x=25, y=145, width=200, height=20, min=1, max=MAX_PARTICLES, step=10, initial=MAX_PARTICLES, colour=COLOUR.UI_BUTTON_BACKGROUND, handleColour=COLOUR.UI_BUTTON_TEXT)
     slider_gravity = Slider(win=screen, x=25, y=210, width=200, height=20, min=0, max=20, step=0.01, initial=9.81, colour=COLOUR.UI_BUTTON_BACKGROUND, handleColour=COLOUR.UI_BUTTON_TEXT)
     slider_drag_coefficient = Slider(win=screen, x=25, y=275, width=200, height=20, min=0.95, max=1.05, step=0.01, initial=1, colour=COLOUR.UI_BUTTON_BACKGROUND, handleColour=COLOUR.UI_BUTTON_TEXT)
-    slider_mouse_strength = Slider(win=screen, x=25, y=350, width=200, height=20, min=2000, max=12000, step=100, initial=10000, colour=COLOUR.UI_BUTTON_BACKGROUND, handleColour=COLOUR.UI_BUTTON_TEXT)
+    slider_mouse_strength = Slider(win=screen, x=25, y=350, width=200, height=20, min=20, max=12000, step=100, initial=10000, colour=COLOUR.UI_BUTTON_BACKGROUND, handleColour=COLOUR.UI_BUTTON_TEXT)
 
     def spawn_particles():
         fluid_sim.generate_particles_grid(particles=slider_particles_to_spawn.getValue(), spacing=7)
