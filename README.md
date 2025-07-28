@@ -77,5 +77,12 @@ You have the following options:
 
 ## Demonstration
 Here is some media of the simulator in action.
-**TODO: ADD GIFS AND IMAGES**
+
+![](https://github.com/Alpha2749/FluidSim/blob/main/media/fluid_sim_gif.gif)
+
+![](https://github.com/Alpha2749/FluidSim/blob/main/media/sim1.PNG)
+
+![](https://github.com/Alpha2749/FluidSim/blob/main/media/sim2.PNG)
+
+![](https://github.com/Alpha2749/FluidSim/blob/main/media/sim3.PNG)
 
