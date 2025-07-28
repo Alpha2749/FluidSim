@@ -61,6 +61,8 @@ def main():
         value_drag_coefficient = font.render(f"{slider_drag_coefficient.getValue():.2f} % Energy retained from friction", True, COLOUR.WHITE)
         label_mouse_strength = font.render("Mouse Strength (Repulsion & Attraction)", True, COLOUR.WHITE)
         value_mouse_strength = font.render(f"{slider_mouse_strength.getValue():.2f} Unitless... (Play around!)", True, COLOUR.WHITE)
+        label_controls1 = font.render("Left Click - Attract Particles to Cursor", True, COLOUR.WHITE)
+        label_controls2 = font.render("Right Click - Repel Particles from Cursor", True, COLOUR.WHITE)
         pygame.draw.rect(screen, COLOUR.BOUNDING_BOX, simulation_box_view, width=SIM_BORDER_WIDTH)
         fps_text = font.render(f"FPS: {clock.get_fps():.2f}", True, COLOUR.WHITE)
 
@@ -73,7 +75,9 @@ def main():
                      (label_drag_coefficient, (15, 245)), 
                      (value_drag_coefficient, (250, 275)),
                      (label_mouse_strength, (15, 320)),
-                     (value_mouse_strength, (250, 350))
+                     (value_mouse_strength, (250, 350)),
+                     (label_controls1, (15, 650)),
+                     (label_controls2, (15, 685))
         ]
         for i in blittable:
             screen.blit(i[0], i[1]) 
