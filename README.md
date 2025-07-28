@@ -19,13 +19,19 @@ Anyway, you've probably had enough of reading my short novella now, so here is t
 There are several options to install this, I made this with the uv package/ project manager. So I would recommend using that. Although I have left a requirements.txt which (should) work too with a regular venv.
 
 #### Using uv
-1. Install uv (one-time setup) [uv github](https://github.com/astral-sh/uv)
+1. Install uv (one-time setup, if you don't already have it) [uv github](https://github.com/astral-sh/uv)
 
 ```
+# On macOS and Linux.
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-2. Clone the repo and change directory into it
+```
+# On Windows. Note, you will need to restart your CMD as the newly installed uv will not be found in the active session.
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+1. Clone the repo and change directory into it
    
 ```
 git clone https://github.com/Alpha2749/FluidSim.git
