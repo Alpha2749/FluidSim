@@ -24,15 +24,27 @@ class FluidSim:
             'bottom': self.sim_box.bottom - PARTICLE_RADIUS
         }
     
-    def generate_particles_grid(self, spacing=20):
+    def clear_simulation(self):
+        self.particles = []
+    
+    def generate_particles_grid(self, particles=800, spacing=7):
         row = 0
-        for y in range(self.bounds['top'], self.bounds['bottom'], spacing):
-            offset = spacing // 2 if row % 2 else 0 
-            for x in range(self.bounds['left'] + offset, self.bounds['right'], spacing):
+        count = 0
+        y = self.bounds['top']
+
+        while y < self.bounds['bottom'] and count < particles:
+            offset = spacing // 2 if row % 2 else 0
+            x = self.bounds['left'] + offset
+
+            while x < self.bounds['right'] and count < particles:
                 if len(self.particles) >= MAX_PARTICLES:
                     return
                 position = pygame.Vector2(x, y)
                 self.add_particle(position, pygame.Vector2(0, 0))
+                count += 1
+                x += spacing
+
+            y += spacing
             row += 1
 
     def add_particle(self, position, velocity):
@@ -139,11 +151,11 @@ class Particle:
             self.velocity.y = 0
 
     def draw(self):
-        self._draw_soft_circle(self.screen, COLOUR.DEEP_AQUA, self.position, PARTICLE_RADIUS)
+        self._draw_soft_circle(self.screen, COLOUR.WATER_PARTICLE, self.position, PARTICLE_RADIUS)
 
     def _draw_soft_circle(self, surface, colour, position, radius):
         x, y = int(position.x), int(position.y)
-        pygame.gfxdraw.aacircle(surface, x, y, radius, COLOUR.SKY_BLUE)
+        pygame.gfxdraw.aacircle(surface, x, y, radius, COLOUR.PARTICLE_HIGHLIGHT)
         pygame.gfxdraw.filled_circle(surface, x, y, radius, colour)
 
 class SpatialGrid:
