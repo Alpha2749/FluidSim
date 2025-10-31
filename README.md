@@ -1,6 +1,6 @@
 # Interactive fluid particle simulator in Python & PyGame!
 ##### (Written for the Boot.dev 2025 Hackathon)
-
+##### [Runner up ('*'Tied for 4th Place'*) in the Pro Category!](https://blog.boot.dev/news/hackathon-2025/)
 
 ## Introduction
 This is a simple interactive particle simulator written in Python.
